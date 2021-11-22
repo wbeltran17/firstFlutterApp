@@ -1,3 +1,5 @@
+import 'dart:js';
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -23,17 +25,58 @@ class Home extends StatefulWidget {
   _HomeState createState() => _HomeState();
 }
 
+
+class _HomeState extends State<Home> {
+  @override
+  Widget build(BuildContext context) {
+    return (
+      Scaffold(appBar: 
+      AppBar(
+        title: Text('Navegación',textAlign: TextAlign.center),
+      ),
+      body:Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text('Home'),
+            SizedBox(height: 20,),
+            MaterialButton(
+              child: Text('Pagina siguiente', style: TextStyle(color:Colors.white, fontWeight: FontWeight.bold),),
+              color: Colors.lightBlue,
+              onPressed: ()=>{
+                //navegacion
+                Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context)=>Home())
+                )
+              },
+            )
+          ],
+        ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex:0 ,
+        items: [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+          BottomNavigationBarItem(icon: Icon(Icons.supervised_user_circle), label: "User"),
+        ],),
+    ));
+  }
+  
+}
+
+/*
 class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("Ejemplo 1")),
-      body: cuerpo(),
+      body: cuerpo(context),
     );
   }
 }
 
-Widget cuerpo() {
+Widget cuerpo(BuildContext context) {
   return Container(
       decoration: BoxDecoration(
         image: DecorationImage(
@@ -42,7 +85,7 @@ Widget cuerpo() {
       ),
       child: Center(
         child: Column(
-          children: <Widget>[nombre(), usuario(), clave(), ingresar()],
+          children: <Widget>[nombre(), usuario(), clave(), ingresar( context)],
         ),
       ));
 }
@@ -78,11 +121,13 @@ Widget clave() {
   );
 }
 
-Widget ingresar() {
+Widget ingresar(BuildContext context) {
   return MaterialButton(
     minWidth: 200.0,
     height: 50.0,
-    onPressed: () => print('ingresa'),
+    onPressed: () {
+      Navigator.push(context, MaterialPageRoute(builder: (context) => Home()));
+    },
     color: Colors.lightGreen,
     child: Text(
       "Ingresar",
@@ -90,7 +135,7 @@ Widget ingresar() {
     ),
   );
 }
-
+*/
 /* uso de Lustas y contenedores 
 
       */
